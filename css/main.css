@@ -1,0 +1,42 @@
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+#banner{
+    position: absolute;
+    height: 70px;
+    width: 1310px;
+    background-color: #7d7d80;
+    margin:10px;
+    padding-top: 30px;
+    text-align: center;
+    font-size: xx-large;
+    color:floralwhite;
+}
+#input-container{
+
+    position: absolute;
+    top: 120px;
+    width: 280px;
+    padding: 10px;
+    height: 1000px;
+    margin: 10px;
+
+    background-color: #0B9BCD;
+
+}
+#graph-container{
+
+    position: absolute;
+    top: 120px;
+    border: 1px solid #ddd;
+    width: 1000px;
+    height: 1000px;
+    left: 310px;
+    margin: 10px;
+
+}

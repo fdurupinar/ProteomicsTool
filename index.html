@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <meta charset="UTF-8">
+    <title>Proteomics Analysis Tool</title>
+
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <title>Proteomics Analysis Tool</title>
+
+        <!--Css-->
+
+        <link href="./lib/css/jquery-ui.css" rel="stylesheet">
+        <link href="./lib/css/jquery.fancybox-1.3.4.css" rel="stylesheet">
+        <link href="./lib/css/bootstrap.css" rel="stylesheet">
+
+        <link href="./lib/css/cytoscape.js-panzoom.css" rel="stylesheet" type="text/css" />
+        <link href="./lib/css/font-awesome-4.0.3/css/font-awesome.css" rel="stylesheet" type="text/css" />
+        <link href="./lib/css/jquery.qtip.min.css" rel="stylesheet" type="text/css" />
+        <link href="./node_modules/cytoscape-context-menus/cytoscape-context-menus.css" rel="stylesheet" type="text/css" />
+
+        <link href="./css/main.css" rel="stylesheet">
+
+        <!-- External Libraries -->
+
+
+        <script src="sample-app/sampleapp-components/js/sample-app-global-variables.js"></script> <!--Define before cytoscape-->
+        <script src="./node_modules/jquery/dist/jquery.js"></script>
+        <script src="./node_modules/jquery.browser/dist/jquery.browser.js"></script>
+        <script src="./lib/js/jquery.fancybox-1.3.4.js"></script>
+        <script src="./node_modules/jquery-expander/jquery.expander.js"></script>
+        <script src="./node_modules/qtip2/dist/jquery.qtip.js"></script>
+        <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="./node_modules/jquery-ui-bundle/jquery-ui.js"></script>
+        <script src="./node_modules/underscore/underscore.js"></script>
+        <script src="./node_modules/backbone/backbone.js"></script>
+        <script src="lib/js/cytoscape-original.js"></script>
+        <script src="./node_modules/cytoscape-panzoom/cytoscape-panzoom.js"></script>
+        <script src="./node_modules/cytoscape-qtip/cytoscape-qtip.js"></script>
+        <script src="./lib/js/cytoscape-edgehandles.js"></script>
+        <script src="./node_modules/mousetrap/mousetrap.min.js"></script>
+        <script src="./node_modules/ocanvas/build/dist/latest/ocanvas.min.js"></script>
+        <script src="./node_modules/cytoscape-cose-bilkent/cytoscape-cose-bilkent.js"></script>
+        <script src="./node_modules/cytoscape-undo-redo/cytoscape-undo-redo.js"></script>
+        <script src="./node_modules/cytoscape-clipboard/cytoscape-clipboard.js"></script>
+        <script src="./node_modules/cytoscape-context-menus/cytoscape-context-menus.js"></script>
+        <script src="./node_modules/cytoscape-edge-bend-editing/cytoscape-edge-bend-editing.js"></script>
+        <script src="./node_modules/cytoscape-grid-guide/cytoscape-grid-guide.js"></script>
+        <script src="./node_modules/cytoscape-node-resize/cytoscape-node-resize.js"></script>
+        <script src="./node_modules/cytoscape-autopan-on-drag/cytoscape-autopan-on-drag.js"></script>
+
+        <!--Source code-->
+
+        <script src="src/sif-visualizer/sif-parser.js"></script>
+        <script src="./src/sif-visualizer/sif-cytoscape-container.js"></script>
+
+
+
+
+    </head>
+<body>
+
+    <div id = "banner" >
+        Proteomics Analysis Tool
+    </div>
+    <div id= "input-container">
+        Input
+
+
+    </div>
+    <div id = "graph-container">
+
+
+
+    </div>
+
+    <!--Backbone templates-->
+    <script type="text/template" id="sif-view-template">
+    </script>
+
+
+    <script type="text/template" id= "input-loading-template">
+        <div id="divUpload" class="tabcontent">
+
+            <table  border="0" cellpadding="2" width="100%" align="top" >
+                <tr>
+                    <td  align="left" height="15">
+                        A: Paste a Graph
+                    </td>
+                </tr>
+                <tr>
+                    <td  valign="top" align="left" >
+                        <textarea rows="10" id="sifBox"><%= sifText %></textarea>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="left" height="8">
+                        <b><font color=white  face="Verdana" size="2">Or&nbsp;</font></b>
+                    </td>
+                </tr>
+                <tr><td>
+
+                    <font class='regular'>B:Choose From a File</font>
+                </td>
+                </tr>
+                <tr>
+                    <td  align="left" height="25">
+                        <p style="word-spacing: 0; line-height: 100%; text-indent: 0; margin: 0">
+
+                            <input type="file" class='browse' name="fileBrowser" accept="text/plain" size="14">
+
+                        </p>
+                    </td>
+                </tr>
+
+
+                <tr><td>
+                    <table>
+                        <tr><td class="sidebar_subheader"><br>
+                            Step 4: Submit List </td>
+                        </tr></table>
+                    <input type="button" id = "sifSubmitButton"  value="Submit"  class='upload'>
+                </td></tr>
+        </table>
+    </div>
+
+    </script>
+
+
+    <script>loadBackboneViews();</script>
+
+    <script>
+        $("textarea").keydown(function(e) {
+        if(e.keyCode === 9) { // tab was pressed
+        // get caret position/selection
+        var start = this.selectionStart;
+        var end = this.selectionEnd;
+
+        var $this = $(this);
+        var value = $this.val();
+
+        // set textarea value to: text before caret + tab + text after caret
+        $this.val(value.substring(0, start)
+        + "\t"
+        + value.substring(end));
+
+        // put caret at right position again (add one for the tab)
+        this.selectionStart = this.selectionEnd = start + 1;
+
+        // prevent the focus lose
+        e.preventDefault();
+        }
+        });
+    </script>
+
+
+
+
+</body>
+</html>
