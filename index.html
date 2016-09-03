@@ -86,7 +86,7 @@
 
             <table  border="0" cellpadding="2" width="100%" align="top" >
                 <tr>
-                    <td  align="left" height="15">
+                    <td  class = "instructions"  align="left" height="15">
                         A: Paste a Graph
                     </td>
                 </tr>
@@ -94,36 +94,34 @@
                     <td  valign="top" align="left" >
                         <textarea rows="10" id="sifBox"><%= sifText %></textarea>
                     </td>
+
+
                 </tr>
 
+                <tr>
+                    <td><input type="button" id = "sif-text-clear-button"  value="Clear"> &nbsp;&nbsp;&nbsp;
+
+                    <input type="button" id = "sif-text-submit-button"  value="Submit"  class='upload'></td>
+                </tr>
+
+
+                <tr> <td> </td></tr>
                 <tr>
                     <td align="left" height="8">
                         <b><font color=white  face="Verdana" size="2">Or&nbsp;</font></b>
                     </td>
                 </tr>
-                <tr><td>
-
-                    <font class='regular'>B:Choose From a File</font>
-                </td>
+                <tr> <td> </td> </tr>
+                <tr><td class='instructions'>B:Load From a File </td>
                 </tr>
                 <tr>
-                    <td  align="left" height="25">
-                        <p style="word-spacing: 0; line-height: 100%; text-indent: 0; margin: 0">
-
-                            <input type="file" class='browse' name="fileBrowser" accept="text/plain" size="14">
-
-                        </p>
+                    <!--<td  align="left" height="25">-->
+                    <td>
+                        <input  type="file" id = "sif-file-input"  accept="sif">
                     </td>
+                    <!--</td>-->
                 </tr>
 
-
-                <tr><td>
-                    <table>
-                        <tr><td class="sidebar_subheader"><br>
-                            Step 4: Submit List </td>
-                        </tr></table>
-                    <input type="button" id = "sifSubmitButton"  value="Submit"  class='upload'>
-                </td></tr>
         </table>
     </div>
 

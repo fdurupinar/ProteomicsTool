@@ -1,35 +1,41 @@
 //private members
-var nodes = {}, links = {};
+
     
-var _getNode = function(id){
+var _getNode = function(nodes, id){
     if(!nodes[id]) nodes[id] = {id:id};
     return nodes[id];
 }
     
-var _parse = function(line, i){
+var _parse = function(nodes, edges, line, i){
     line = (line.split('\t').length > 1) ? line.split('\t') : line.split(' ');
 
 
     if(line.length == 1){
-        _getNode(line[0]);
+        _getNode(nodes, line[0]);
 
     }
     else if(line.length == 3) {
-        var source = _getNode(line[0]), intType = line[1], j, length;
-        for (j = 2, length = line.length; j < length; j++) {
-            var target = _getNode(line[j]);
+        var source = _getNode(nodes, line[0]);
+        var edgeType = line[1];
 
-            if (source < target) {
-                links[source.id + target.id + intType] = {target: target.id, source: source.id, intType: intType};
-            } else {
-                links[target.id + source.id + intType] = {target: target.id, source: source.id, intType: intType};
-            }
+        for (var j = 2; j < line.length; j++) {
+            var target = _getNode(nodes, line[j]);
+            var edgeId;
+
+
+            edgeId =  source.id  + "_" +  edgeType + "_" + target.id ;
+
+            edges[edgeId] = {id: edgeId, source: source.id, target: target.id, edgeType: edgeType};
+
         }
+
     }
     else{
         console.warn('SIFJS cannot parse line ' + i + ' "' + line + '"');
         return;
     }
+
+    return
 }
 
 var _toArr = function(obj){
@@ -42,11 +48,15 @@ var _toArr = function(obj){
 function SIFJS() {};
     
 SIFJS.parse = function(text){
-    
+
+    var nodes = {};
+    var edges = {};
+
+
     var lines = text.split('\n'), i, length;
     for (i = 0, length = lines.length; i < length; i++)
-        _parse(lines[i], i);
+        _parse(nodes, edges, lines[i], i);
     
-    return {nodes:_toArr(nodes), links:_toArr(links)};
+    return {nodes:_toArr(nodes), edges:_toArr(edges)};
 };
 

@@ -26,8 +26,11 @@ body {
     height: 1000px;
     margin: 10px;
 
+    color: #444444;
     background-color: #0B9BCD;
 
+    font-size:larger;
+    font-family: Verdana;
 }
 #graph-container{
 
@@ -40,3 +43,16 @@ body {
     margin: 10px;
 
 }
+
+#sif-file-input{
+
+    font-size:medium;
+}
+
+
+/*.instructions{*/
+    /*color: peachpuff;*/
+    /*font-size:larger;*/
+    /*font-family: 'Lucida Grande', sans-serif;*/
+    /*font-stretch: expanded;*/
+/*}*/
