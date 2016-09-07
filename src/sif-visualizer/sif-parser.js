@@ -7,8 +7,13 @@ var _getNode = function(nodes, id){
 }
     
 var _parse = function(nodes, edges, line, i){
+
+
     line = (line.split('\t').length > 1) ? line.split('\t') : line.split(' ');
 
+
+    if(line[0]=="")
+        return;
 
     if(line.length == 1){
         _getNode(nodes, line[0]);
@@ -35,7 +40,7 @@ var _parse = function(nodes, edges, line, i){
         return;
     }
 
-    return
+    return;
 }
 
 var _toArr = function(obj){

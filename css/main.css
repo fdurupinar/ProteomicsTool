@@ -49,6 +49,11 @@ body {
     font-size:medium;
 }
 
+.check-grouping{
+
+    padding-top: 30px;
+    font-size:small;
+}
 
 /*.instructions{*/
     /*color: peachpuff;*/

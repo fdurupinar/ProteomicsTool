@@ -53,7 +53,10 @@
 
         <!--Source code-->
 
+
         <script src="src/sif-visualizer/sif-parser.js"></script>
+        <script src="src/sif-visualizer/sif-topology-grouping.js"></script>
+        <script src="./src/sif-visualizer/sif-cytoscape-stylesheet.js"></script>
         <script src="./src/sif-visualizer/sif-cytoscape-container.js"></script>
 
 
@@ -98,11 +101,14 @@
 
                 </tr>
 
+
                 <tr>
                     <td><input type="button" id = "sif-text-clear-button"  value="Clear"> &nbsp;&nbsp;&nbsp;
 
                     <input type="button" id = "sif-text-submit-button"  value="Submit"  class='upload'></td>
                 </tr>
+
+
 
 
                 <tr> <td> </td></tr>
@@ -121,6 +127,13 @@
                     </td>
                     <!--</td>-->
                 </tr>
+
+
+
+                <tr>
+                    <td class = "check-grouping"><input type="checkbox" id = "sif-topology-grouping" checked> Topology grouping</td>
+                </tr>
+
 
         </table>
     </div>
